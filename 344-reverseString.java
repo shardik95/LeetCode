@@ -1,8 +1,16 @@
 class Solution {
     public String reverseString(String s) {
-        char[] arr = new char[s.length()];
-        for(int i=0;i<s.length();i++)
-            arr[i]=s.charAt(s.length()-1-i);
+        int i = 0;
+        int k = s.length() - 1 ;
+        char[] arr = s.toCharArray();
+        
+        while(i<k){
+            char temp = arr[i];
+            arr[i] = arr[k];
+            arr[k] = temp;
+            i++;
+            k--;
+        }
         return new String(arr);
     }
 }
