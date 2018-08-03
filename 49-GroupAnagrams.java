@@ -2,15 +2,10 @@ class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
         Map<String,List<String>> map = new HashMap<>();
         for(String s: strs){
-            int[] arr = new int[26];
-            for(int i=0;i<s.length();i++){
-                arr[s.charAt(i)-'a']=arr[s.charAt(i)-'a']+1;
-            }
+            char[] arr = s.toCharArray();
+            Arrays.sort(arr);
             StringBuilder sb = new StringBuilder();
-            for(int i=0;i<arr.length;i++){
-                sb.append(arr[i]);
-                sb.append("#");
-            }
+            sb.append(arr);
             String key = sb.toString();
             if(map.containsKey(key)){
                 List<String> l = map.get(key);
