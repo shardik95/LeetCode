@@ -3,7 +3,7 @@ class Solution {
         Map<Character,Integer> map = new HashMap<>();
         int end = 0;
         int begin = 0;
-        int min = Integer.MAX_VALUE;
+        int l = Integer.MAX_VALUE;
         int count = t.length();
         int head = 0;
         for(int i=0;i<t.length();i++){
@@ -19,19 +19,20 @@ class Solution {
                  map.put(x,map.get(x)-1);
             }
             end++;
-            if(count ==0){
-                if(min > end - begin){
-                    min = end - begin;
+            while(count ==0){
+                if(l > end - begin){
+                    l = end - begin;
                     head = begin;
                 }
+                char first = s.charAt(begin);
+                if(map.containsKey(first)){
+                    map.put(first,map.get(first)+1);
+                    if(map.get(first)>0) count++;
+                }
+                begin++;
             }
-            char first = s.charAt(begin);
-            if(map.containsKey(first)){
-                map.put(first,map.get(first)+1);
-                if(map.get(first)>0) count++;
-            }
-            begin++;
+            
         }
-        return min==Integer.MAX_VALUE? "":s.substring(head,head+min);
+        return l==Integer.MAX_VALUE? "":s.substring(head,head+l);
     }
 }
